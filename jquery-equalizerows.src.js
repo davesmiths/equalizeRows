@@ -7,16 +7,18 @@
 		,activeCollections
         ,delay
        	,timeoutID
+		,eachRowOf
+		,eachColOf
     ;
 	
 	// activeCollections, to collect all the elements that can passed so they can be updated on window.resize efficiently
-	delay = 250;
+	delay = 100;
 	activeCollections = [];
 	
 	
     runEachVectorOf = function(o) {
 
-		// There are three types of vector (row or column):
+		// There are two types of vector (row or column):
 		// 0 Normal: 		Items that start at the same y point are in the vector
 		// 1 Compact:	 	Normal plus items that end within the tallest item are in the vector
 		// 2 Super Compact:	Normal plus items that start within the tallest item are in the vector
@@ -125,10 +127,10 @@
     };
 
     
-    $.fn.eachRowOf = function(o) {
+    eachRowOf = function(o) {
 		
 		// Sensible defaults
-		o.vector = 'row';
+		o.vector = o.vector || 'row';
 		o.type = o.type === undefined ? 0 : o.type; // normal or compact or supercompact, may change to 0,1,2
 		o.active = o.active === undefined ? false : o.active;
 		o.fn = o.fn || function() {};
@@ -147,23 +149,10 @@
     };
 
     
-    $.fn.eachColOf = function(o) {
+    eachColOf = function(o) {
 		
-		// Sensible defaults
 		o.vector = 'col';
-		o.type = o.type === undefined ? 0 : o.type; // normal or compact or supercompact, may change to 0,1,2
-		o.active = o.active === undefined ? false : o.active;
-		o.fn = o.fn || function() {};
-		o.resize = o.resize || function() {};
-		
-		o.collection = this;
-		
-		if (o.active) {
-			activeCollections.push(o);
-		}
-		
-		runEachVectorOf(o);
-		
+		eachRowOf.call(this, o);
     	return this;
     	
     };
@@ -182,7 +171,7 @@
 				}
 			}, delay);
 		});
-	}, 200);
+	}, 50);
 	
 	
 	// Equalize Rows
@@ -213,7 +202,7 @@
 		
 		if ($(this).length) {
 
-			$(this).eachRowOf({
+			eachRowOf.call(this, {
 				type:o.type
 				,active:o.active
 				,fn:function() {
@@ -245,7 +234,7 @@
 					});
 					
 					// Now work with each column in the row
-					$(this).eachColOf({
+					eachColOf.call(this, {
 						type:o.colType
 						,fn:function() {
 						
@@ -316,7 +305,7 @@
 					
 				}
 				,resize: function() {
-					// After first run reset CSS
+					// Reset CSS
 					$(this).each(function() {
 						var $this = o.here ? $(this).find(o.here) : $(this);
 						for (i = 0; i < propertyLength; i += 1) {
@@ -339,29 +328,3 @@
 	*/
 }(jQuery));
 
-$(function() {
-	
-	$('[data-equalizerows]').each(function() {
-		
-		var $this = $(this)
-			,selector = $this.data('equalizerows')
-			,here = $this.data('equalizerows-here')
-			,property = $this.data('equalizerows-property')
-			,active = $this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false
-			,type = $this.data('equalizerows-type')
-			,colType = $this.data('equalizerows-colType')
-			,applyTo = $this.data('equalizerows-applyTo')
-		;
-		if (selector) {
-			$this.find(selector).equalizeRows({
-				type:type
-				,active:active
-				,property:property
-				,here:here
-				,colType:colType
-				,applyTo:applyTo
-			});
-		}
-	});
-	
-});
