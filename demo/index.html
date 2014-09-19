@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery equalizeRows</title>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="../equalizerows.src.js"></script>
+        <script>
+            
+            $(function() {
+            	
+            	$('[data-equalizerows]').each(function() {
+            		
+            		var $this = $(this)
+            			,selector = $this.data('equalizerows')
+            			,here = $this.data('equalizerows-here')
+            			,property = $this.data('equalizerows-property')
+            			,active = $this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false
+            			,type = $this.data('equalizerows-type')
+            			,colType = $this.data('equalizerows-colType')
+            			,applyTo = $this.data('equalizerows-applyTo')
+            		;
+            		if (selector) {
+            			$this.find(selector).equalizeRows({
+            				type:type
+            				,active:active
+            				,property:property
+            				,here:here
+            				,colType:colType
+            				,applyTo:applyTo
+            			});
+            		}
+            	});
+            	
+            });
+        </script>
+        <style>
+            body {background:#eee;}
+            ul {margin:0;padding:0;overflow:hidden;margin-bottom:20px;}
+            li {display:inline;margin:0;padding:0;}
+            a {float:left;background:#aaa;padding:20px;text-decoration:none;width:25%;}
+            a:hover {background:#ccc;}
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li><a href="">Bob<br />Pants</a></li>
+            <li><a href="">Is</a></li>
+            <li><a href="">Your</a></li>
+            <li><a href="">Uncle</a></li>
+        </ul>
+        <ul data-equalizerows="a">
+            <li><a href="">Bob<br />Pants</a></li>
+            <li><a href="">Is</a></li>
+            <li><a href="">Your</a></li>
+            <li><a href="">Uncle</a></li>
+        </ul>
+    </body>
+</html>
