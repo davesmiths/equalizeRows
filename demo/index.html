@@ -37,21 +37,73 @@
             body {background:#eee;}
             ul {margin:0;padding:0;overflow:hidden;margin-bottom:20px;}
             li {display:inline;margin:0;padding:0;}
-            a {float:left;background:#aaa;padding:20px;text-decoration:none;width:25%;}
+            a {float:left;padding:20px;text-decoration:none;width:25%;
+			background: #7abcff;
+
+background: -moz-linear-gradient(top,  #7abcff 0%, #60abf8 44%, #4096ee 100%);
+
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#4096ee));
+
+background: -webkit-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%);
+
+background: -o-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%);
+
+background: -ms-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%);
+
+background: linear-gradient(to bottom,  #7abcff 0%,#60abf8 44%,#4096ee 100%);
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 );
+
+}
             a:hover {background:#ccc;}
         </style>
     </head>
     <body>
         <ul>
-            <li><a href="">Bob<br />Pants</a></li>
+            <li><a href="">Bob<br /><br /><br /><br /><br /></a></li>
             <li><a href="">Is</a></li>
-            <li><a href="">Your</a></li>
+            <li><a href="">Ludicrous Speed</a></li>
+            <li><a href="">Your<br /><br /><br /><br /></a></li>
             <li><a href="">Uncle</a></li>
         </ul>
-        <ul data-equalizerows="a">
-            <li><a href="">Bob<br />Pants</a></li>
+        <p>Type 0</p>
+        <ul data-equalizerows="a" data-equalizerows-type="0">
+            <li><a href="">Bob<br /><br /><br /><br /><br /></a></li>
             <li><a href="">Is</a></li>
-            <li><a href="">Your</a></li>
+            <li><a href="">Ludicrous Speed</a></li>
+            <li><a href="">Your<br /><br /><br /><br /></a></li>
+            <li><a href="">Uncle</a></li>
+        </ul>
+        <p>Type 1</p>
+        <ul data-equalizerows="a" data-equalizerows-type="1">
+            <li><a href="">Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">Is</a></li>
+            <li><a href="">Ludicrous Speed</a></li>
+            <li><a href="">Your<br /><br /><br /><br /></a></li>
+            <li><a href="">Uncle</a></li>
+        </ul>
+        <p>Type 2</p>
+        <ul data-equalizerows="a" data-equalizerows-type="2">
+            <li><a href="">Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">Is</a></li>
+            <li><a href="">Ludicrous Speed</a></li>
+            <li><a href="">Your<br /><br /><br /><br /></a></li>
+            <li><a href="">Uncle</a></li>
+        </ul>
+        <p>Type 3</p>
+        <ul data-equalizerows="a" data-equalizerows-type="3">
+            <li><a href="">Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">Is</a></li>
+            <li><a href="">Ludicrous Speed</a></li>
+            <li><a href="">Your<br /><br /><br /><br /></a></li>
+            <li><a href="">Uncle</a></li>
+        </ul>
+        <p>Type -1</p>
+        <ul data-equalizerows="a" data-equalizerows-type="-1">
+            <li><a href="">Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">Is</a></li>
+            <li><a href="">Ludicrous Speed</a></li>
+            <li><a href="">Your<br /><br /><br /><br /></a></li>
             <li><a href="">Uncle</a></li>
         </ul>
     </body>

@@ -19,31 +19,18 @@
     runEachVectorOf = function(o) {
 
 		// There are two types of vector (row or column):
-		// 0 Normal: 		Items that start at the same y point are in the vector
-		// 1 Compact:	 	Normal plus items that end within the tallest item are in the vector
-		// 2 Super Compact:	Normal plus items that start within the tallest item are in the vector
-		// 3 Ultra Compact:	The whole collection is considered in the vector
+/*
 		
-		
-		/*
-		
-		type
-		0: none
+		o.type
+		-1: off, all items are in the row
+		0: Only items that start at the same point are in the row (default)
 		1: starts
 		2: starts and ends
 		3: ends
+			
+*/
+	
 		
-		colMax: maximum number of items per column
-		-1: all
-		0: n/a
-		1
-		2
-		3
-		4
-		5
-		
-		
-		*/
 		
     	var currentTop
 			,items
@@ -76,15 +63,16 @@
 			
 			items = [];
 			
-			if (o.type === 3) {
+			if (o.type === -1) {
+				// All items are in the vector
 				items = collection;
 			}
 			else {
 				
+				// Find the items aligned at the start of the vector
+				// The following takes into account that source order doesn't equal visual order
 				currentTop = Number.POSITIVE_INFINITY;
 				
-				// Find the top items aligned at the top
-				// The following takes into account that source order doesn't equal visual order
 				for (i = 0; i < collectionLength; i += 1) {
 					
 					$item = $(collection[i]);
@@ -110,23 +98,42 @@
 				
 				if (o.type !== 0) {
 					
-					// Find items that start within the tallest
-					// Loop through all items except those that appear at the top
-					for (i = 0; i < collectionLength; i += 1) {
-						
-						// Only work with items not already in the row
-						if ($.inArray(collection[i],items) < 0) {
+					if (o.type === 1 || o.type === 2) {
+					
+						// Find items that start within the tallest
+						// Loop through all items except those that appear at the top
+						for (i = 0; i < collectionLength; i += 1) {
 							
-							//thisTop = $(collection[i]).position().top;
-							thisTop = $(collection[i]).offset()[leftOrTop];
-							
-							if (thisTop < currentRowBottom) {
-								if (o.type === 1) {
-									if (thisTop + $(collection[i])[outerWidthOrHeight]() <= currentRowBottom) {
+							// Only work with items not already in the row
+							if ($.inArray(collection[i],items) < 0) {
+								
+								thisTop = $(collection[i]).offset()[leftOrTop];
+								
+								if (thisTop < currentRowBottom) {
+									if (o.type === 2) {
+										if (thisTop + $(collection[i])[outerWidthOrHeight]() <= currentRowBottom) {
+											items.push(collection[i]);
+										}
+									}
+									else {
 										items.push(collection[i]);
 									}
 								}
-								else {
+							}
+						}
+					}
+					else {
+						// type === 3
+						// Find items that start within the tallest
+						// Loop through all items except those that appear at the top
+						for (i = 0; i < collectionLength; i += 1) {
+							
+							// Only work with items not already in the row
+							if ($.inArray(collection[i],items) < 0) {
+								
+								thisTop = $(collection[i]).offset()[leftOrTop] + $(collection[i])[outerWidthOrHeight]();
+								
+								if (thisTop <= currentRowBottom) {
 									items.push(collection[i]);
 								}
 							}
@@ -233,7 +240,6 @@
 						,rowTallests
 					;
 					
-					
 					// Find all the items in the row which extend the furthest down the page (the row tallests)
 					rowTallests = [];
 					$row.each(function() {
@@ -313,7 +319,8 @@
 									$items.each(function() {
 										var $thisHereNow = o.here ? $(this).find(o.here) : $(this);
 										for (i = 0; i < propertyLength; i += 1) {
-											$thisHereNow.css(o.property[i], parseInt($colTallestHere.css(o.property[i]), 10) + diff / (propertyLength * $itemsLength) + 'px');
+											$thisHereNow.css(o.property[i], parseFloat($colTallestHere.css(o.property[i]), 10) + (diff / (propertyLength * $itemsLength)) + 'px');
+											 // 0.4 was needed in Firefox in the demo, so need to investigate what is happening here
 										}
 									});
 								}
