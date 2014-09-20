@@ -50,7 +50,7 @@ The rest can be done in HTML
 </div>
 ```
 
-Or via JavaScript
+... or with JavaScript
 ```
 <script>
     $('.link').equalizeRows(options);
