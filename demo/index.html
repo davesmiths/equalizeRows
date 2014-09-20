@@ -32,79 +32,314 @@
             	});
             	
             });
+            
+            $(function() {
+                var hideLinks = function() {
+                    $($(this).attr('href')).hide();
+                    $(this).removeClass('active');
+                };
+                $('.tabs').each(function() {
+                    var panels = [];
+                    var tallest = 0;
+                    var $as = $(this).find('a');
+                    $as.each(function() {
+                        panels.push($($(this).attr('href')));
+                    });
+                    $(panels).each(function() {
+                        var height = $(this).outerHeight();
+                        if (height > tallest) {
+                            tallest = height;
+                        }
+                    });
+                    $(panels).each(function() {
+                        $(this).css('min-height', (tallest + 50) + 'px');
+                    });
+                    $as.each(hideLinks);
+                    $as.on('click', function(e) {
+                        $as.each(hideLinks);
+                        $(e.target).addClass('active');
+                        $($(e.target).attr('href')).show();
+                        return false;
+                    });
+                    $as.eq(0).triggerHandler('click');
+                })
+            });
         </script>
         <style>
-            body {background:#eee;}
-            ul {margin:0;padding:0;overflow:hidden;margin-bottom:20px;}
-            li {display:inline;margin:0;padding:0;}
-            a {float:left;padding:20px;text-decoration:none;width:25%;
-			background: #7abcff;
+            body {background:#ddd;padding:20px;margin:0;font-family: arial;}
+            ul {margin:0;padding:0;margin-bottom:20px;list-style:none;}
+ul:after,
+ul:before {content:"";display:table;}
+ul:after {clear:both;}
+ul {display:inline-block;}
+ul {display:block;}
+            li {float:left;margin:0;padding:0;width:33.3333%;border:5px solid #ddd;box-sizing:border-box;}
+            a {display:block;padding:20px;text-decoration:none;color:#1B5084;text-transform:uppercase;
+background: #f2f2f2; /* Old browsers */
+background: -moz-linear-gradient(top,  #f2f2f2 0%, #eeeeee 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f2f2), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #f2f2f2 0%,#eeeeee 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #f2f2f2 0%,#eeeeee 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #f2f2f2 0%,#eeeeee 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #f2f2f2 0%,#eeeeee 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
 
-background: -moz-linear-gradient(top,  #7abcff 0%, #60abf8 44%, #4096ee 100%);
-
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#4096ee));
-
-background: -webkit-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%);
-
-background: -o-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%);
-
-background: -ms-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%);
-
-background: linear-gradient(to bottom,  #7abcff 0%,#60abf8 44%,#4096ee 100%);
-
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 );
+                
+            }
+            ul[data-equalizerows] a {
+ background: #9bcdff; /* Old browsers */
+background: -moz-linear-gradient(top,  #9bcdff 0%, #84c0fc 44%, #67b0f9 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9bcdff), color-stop(44%,#84c0fc), color-stop(100%,#67b0f9)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #9bcdff 0%,#84c0fc 44%,#67b0f9 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #9bcdff 0%,#84c0fc 44%,#67b0f9 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #9bcdff 0%,#84c0fc 44%,#67b0f9 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #9bcdff 0%,#84c0fc 44%,#67b0f9 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9bcdff', endColorstr='#67b0f9',GradientType=0 ); /* IE6-9 */
 
 }
-            a:hover {background:#ccc;}
+            a:hover {}
+            .tabs li {width:20%;}
+            .tabs a {background:#eee;}
+            .tabs a.active {background:#fff;}
+            h2 {font-weight:normal;color:#777;font-size:2.5em;}
         </style>
     </head>
     <body>
+    
+    
+        <h2>Regular floats</h2>
+        
+        <ul class="tabs">
+            <li><a href="#a0">type 0: Tops only</a></li>
+            <li><a href="#a1">type 1: Starts</a></li>
+            <li><a href="#a2">type 2: Starts and ends</a></li>
+            <li><a href="#a3">type 3: Ends</a></li>
+            <li><a href="#a-1">type -1: All</a></li>
+        </ul>
         <ul>
-            <li><a href="">Bob<br /><br /><br /><br /><br /></a></li>
-            <li><a href="">Is</a></li>
-            <li><a href="">Ludicrous Speed</a></li>
-            <li><a href="">Your<br /><br /><br /><br /></a></li>
-            <li><a href="">Uncle</a></li>
+            <li><a href="">1 Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a></li>
+            <li><a href="">3 Your</a></li>
+            <li><a href="">4 Uncle<br /><br /><br /><br /></a></li>
+            <li><a href="">5 Ludicrous Speed</a></li>
         </ul>
-        <p>Type 0</p>
+        
+<!-- --><div id="a0">
         <ul data-equalizerows="a" data-equalizerows-type="0">
-            <li><a href="">Bob<br /><br /><br /><br /><br /></a></li>
-            <li><a href="">Is</a></li>
-            <li><a href="">Ludicrous Speed</a></li>
-            <li><a href="">Your<br /><br /><br /><br /></a></li>
-            <li><a href="">Uncle</a></li>
-        </ul>
-        <p>Type 1</p>
+            <li><a href="">1 Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a></li>
+            <li><a href="">3 Your</a></li>
+            <li><a href="">4 Uncle<br /><br /><br /><br /></a></li>
+            <li><a href="">5 Ludicrous Speed</a></li>
+        </ul></div>
+        <div id="a1">
         <ul data-equalizerows="a" data-equalizerows-type="1">
-            <li><a href="">Bob<br /><br /><br /><br /><br /></a></li>
-            <li><a href="">Is</a></li>
-            <li><a href="">Ludicrous Speed</a></li>
-            <li><a href="">Your<br /><br /><br /><br /></a></li>
-            <li><a href="">Uncle</a></li>
-        </ul>
-        <p>Type 2</p>
+            <li><a href="">1 Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a></li>
+            <li><a href="">3 Your</a></li>
+            <li><a href="">4 Uncle<br /><br /><br /><br /></a></li>
+            <li><a href="">5 Ludicrous Speed</a></li>
+        </ul></div>
+<!-- -->
+<div id="a2">
         <ul data-equalizerows="a" data-equalizerows-type="2">
-            <li><a href="">Bob<br /><br /><br /><br /><br /></a></li>
-            <li><a href="">Is</a></li>
-            <li><a href="">Ludicrous Speed</a></li>
-            <li><a href="">Your<br /><br /><br /><br /></a></li>
-            <li><a href="">Uncle</a></li>
+            <li><a href="">1 Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a></li>
+            <li><a href="">3 Your</a></li>
+            <li><a href="">4 Uncle<br /><br /><br /><br /></a></li>
+            <li><a href="">5 Ludicrous Speed</a></li>
         </ul>
-        <p>Type 3</p>
+</div><!-- -->
+<div id="a3">
         <ul data-equalizerows="a" data-equalizerows-type="3">
-            <li><a href="">Bob<br /><br /><br /><br /><br /></a></li>
-            <li><a href="">Is</a></li>
-            <li><a href="">Ludicrous Speed</a></li>
-            <li><a href="">Your<br /><br /><br /><br /></a></li>
-            <li><a href="">Uncle</a></li>
+            <li><a href="">1 Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a></li>
+            <li><a href="">3 Your</a></li>
+            <li><a href="">4 Uncle<br /><br /><br /><br /></a></li>
+            <li><a href="">5 Ludicrous Speed</a></li>
         </ul>
-        <p>Type -1</p>
+</div>
+<div id="a-1">
         <ul data-equalizerows="a" data-equalizerows-type="-1">
-            <li><a href="">Bob<br /><br /><br /><br /><br /></a></li>
-            <li><a href="">Is</a></li>
-            <li><a href="">Ludicrous Speed</a></li>
-            <li><a href="">Your<br /><br /><br /><br /></a></li>
-            <li><a href="">Uncle</a></li>
+            <li><a href="">1 Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a></li>
+            <li><a href="">3 Your</a></li>
+            <li><a href="">4 Uncle<br /><br /><br /><br /></a></li>
+            <li><a href="">5 Ludicrous Speed</a></li>
         </ul>
+</div>
+
+
+        <h2>Regular floats with first pulled up</h2>
+        <ul class="tabs">
+            <li><a href="#c0">type 0: Tops only</a></li>
+            <li><a href="#c1">type 1: Starts</a></li>
+            <li><a href="#c2">type 2: Starts and ends</a></li>
+            <li><a href="#c3">type 3: Ends</a></li>
+            <li><a href="#c-1">type -1: All</a></li>
+        </ul>
+        
+        <ul>
+            <li><a href="" style="margin-top:-20px">1 Bob<br /><br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a></li>
+            <li><a href="">3 Your</a></li>
+            <li><a href="">4 Uncle<br /><br /><br /><br /></a></li>
+            <li><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+        
+<!-- --><div id="c0">
+        <ul data-equalizerows="a" data-equalizerows-type="0">
+            <li><a href="" style="margin-top:-20px">1 Bob<br /><br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a></li>
+            <li><a href="">3 Your</a></li>
+            <li><a href="">4 Uncle<br /><br /><br /><br /></a></li>
+            <li><a href="">5 Ludicrous Speed</a></li>
+        </ul></div>
+        <div id="c1">
+        <ul data-equalizerows="a" data-equalizerows-type="1">
+            <li><a href="" style="margin-top:-20px">1 Bob<br /><br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a></li>
+            <li><a href="">3 Your</a></li>
+            <li><a href="">4 Uncle<br /><br /><br /><br /></a></li>
+            <li><a href="">5 Ludicrous Speed</a></li>
+        </ul></div>
+<!-- -->
+<div id="c2">
+        <ul data-equalizerows="a" data-equalizerows-type="2">
+            <li><a href="" style="margin-top:-20px">1 Bob<br /><br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a></li>
+            <li><a href="">3 Your</a></li>
+            <li><a href="">4 Uncle<br /><br /><br /><br /></a></li>
+            <li><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div><!-- -->
+<div id="c3">
+        <ul data-equalizerows="a" data-equalizerows-type="3">
+            <li><a href="" style="margin-top:-20px">1 Bob<br /><br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a></li>
+            <li><a href="">3 Your</a></li>
+            <li><a href="">4 Uncle<br /><br /><br /><br /></a></li>
+            <li><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div>
+<div id="c-1">
+        <ul data-equalizerows="a" data-equalizerows-type="-1">
+            <li><a href="" style="margin-top:-20px">1 Bob<br /><br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a></li>
+            <li><a href="">3 Your</a></li>
+            <li><a href="">4 Uncle<br /><br /><br /><br /></a></li>
+            <li><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div>
+
+
+
+
+
+
+        <h2>Structured into columns</h2>
+        <ul class="tabs">
+            <li><a href="#b0">type 0: Tops only</a></li>
+            <li><a href="#b1">type 1: Starts</a></li>
+            <li><a href="#b2">type 2: Starts and ends</a></li>
+            <li><a href="#b3">type 3: Ends</a></li>
+            <li><a href="#b-1">type -1: All</a></li>
+        </ul>
+        <ul>
+            <li><a href="">1 Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a><a href="">3 Your<br /><br /><br /><br /></a></li>
+            <li><a href="">4 Uncle</a><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+<div id="b0">
+        <ul data-equalizerows="a" data-equalizerows-type="0">
+            <li><a href="">1 Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a><a href="">3 Your<br /><br /><br /><br /></a></li>
+            <li><a href="">4 Uncle</a><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div>
+<div id="b1">
+        <ul data-equalizerows="a" data-equalizerows-type="1">
+            <li><a href="">1 Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a><a href="">3 Your<br /><br /><br /><br /></a></li>
+            <li><a href="">4 Uncle</a><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div>
+<div id="b2">
+        <ul data-equalizerows="a" data-equalizerows-type="2">
+            <li><a href="">1 Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a><a href="">3 Your<br /><br /><br /><br /></a></li>
+            <li><a href="">4 Uncle</a><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div>
+<div id="b3">
+        <ul data-equalizerows="a" data-equalizerows-type="3">
+            <li><a href="">1 Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a><a href="">3 Your<br /><br /><br /><br /></a></li>
+            <li><a href="">4 Uncle</a><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div>
+<div id="b-1">
+        <ul data-equalizerows="a" data-equalizerows-type="-1">
+            <li><a href="">1 Bob<br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a><a href="">3 Your<br /><br /><br /><br /></a></li>
+            <li><a href="">4 Uncle</a><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div>
+
+
+
+
+
+        <h2>Structured into columns with first pulled up</h2>
+        <ul class="tabs">
+            <li><a href="#d0">type 0: Tops only</a></li>
+            <li><a href="#d1">type 1: Starts</a></li>
+            <li><a href="#d2">type 2: Starts and ends</a></li>
+            <li><a href="#d3">type 3: Ends</a></li>
+            <li><a href="#d-1">type -1: All</a></li>
+        </ul>
+        <ul>
+            <li><a href="" style="margin-top:-20px">1 Bob<br /><br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a><a href="">3 Your<br /><br /><br /><br /></a></li>
+            <li><a href="">4 Uncle</a><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+<div id="d0">
+        <ul data-equalizerows="a" data-equalizerows-type="0">
+            <li><a href="" style="margin-top:-20px">1 Bob<br /><br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a><a href="">3 Your<br /><br /><br /><br /></a></li>
+            <li><a href="">4 Uncle</a><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div>
+<div id="d1">
+        <ul data-equalizerows="a" data-equalizerows-type="1">
+            <li><a href="" style="margin-top:-20px">1 Bob<br /><br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a><a href="">3 Your<br /><br /><br /><br /></a></li>
+            <li><a href="">4 Uncle</a><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div>
+<div id="d2">
+        <ul data-equalizerows="a" data-equalizerows-type="2">
+            <li><a href="" style="margin-top:-20px">1 Bob<br /><br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a><a href="">3 Your<br /><br /><br /><br /></a></li>
+            <li><a href="">4 Uncle</a><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div>
+<div id="d3">
+        <ul data-equalizerows="a" data-equalizerows-type="3">
+            <li><a href="" style="margin-top:-20px">1 Bob<br /><br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a><a href="">3 Your<br /><br /><br /><br /></a></li>
+            <li><a href="">4 Uncle</a><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div>
+<div id="d-1">
+        <ul data-equalizerows="a" data-equalizerows-type="-1">
+            <li><a href="" style="margin-top:-20px">1 Bob<br /><br /><br /><br /><br /><br /></a></li>
+            <li><a href="">2 Is</a><a href="">3 Your<br /><br /><br /><br /></a></li>
+            <li><a href="">4 Uncle</a><a href="">5 Ludicrous Speed</a></li>
+        </ul>
+</div>
+
+
+<!-- -->
     </body>
 </html>

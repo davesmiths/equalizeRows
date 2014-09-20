@@ -34,9 +34,12 @@
 		
     	var currentTop
 			,items
+			,spareTops
 			,currentTallest
 			,collection
 			,collectionLength
+			,collectionOuterLengths
+			,collectionTops
 			,$item
 			,thisTop
 			,thisTall
@@ -58,10 +61,14 @@
 		
 		collection = o.collection.slice();
 		collectionLength = collection.length;
-	
+		
+	    // While there are items in the collection
 		while (collectionLength) {
 			
 			items = [];
+			spareTops = [];
+			collectionTops = [];
+			collectionOuterLengths = [];
 			
 			if (o.type === -1) {
 				// All items are in the vector
@@ -77,8 +84,8 @@
 					
 					$item = $(collection[i]);
 					
-					thisTop = $item.offset()[leftOrTop];
-					thisTall = $item[outerWidthOrHeight]();
+					thisTop = collectionTops[i] = $item.offset()[leftOrTop];
+					thisTall = collectionOuterLengths[i] = $item[outerWidthOrHeight]();
 					
 					if (thisTop < currentTop) {
 						currentTop = thisTop;
@@ -96,6 +103,7 @@
 				}
 				currentRowBottom = currentTop + currentTallest;			
 				
+				// Now find the extra ones if they exist
 				if (o.type !== 0) {
 					
 					if (o.type === 1 || o.type === 2) {
@@ -107,16 +115,18 @@
 							// Only work with items not already in the row
 							if ($.inArray(collection[i],items) < 0) {
 								
-								thisTop = $(collection[i]).offset()[leftOrTop];
+								thisTop = collectionTops[i];
 								
 								if (thisTop < currentRowBottom) {
 									if (o.type === 2) {
-										if (thisTop + $(collection[i])[outerWidthOrHeight]() <= currentRowBottom) {
+										if (thisTop + collectionOuterLengths[i] <= currentRowBottom) {
 											items.push(collection[i]);
+											spareTops.push([thisTop,collection[i]]);
 										}
 									}
 									else {
 										items.push(collection[i]);
+										spareTops.push([thisTop,collection[i]]);
 									}
 								}
 							}
@@ -131,10 +141,11 @@
 							// Only work with items not already in the row
 							if ($.inArray(collection[i],items) < 0) {
 								
-								thisTop = $(collection[i]).offset()[leftOrTop] + $(collection[i])[outerWidthOrHeight]();
+								thisTop = collectionTops[i] + collectionOuterLengths[i];
 								
 								if (thisTop <= currentRowBottom) {
 									items.push(collection[i]);
+									spareTops.push([collectionTops[i],collection[i]]);
 								}
 							}
 						}
@@ -142,9 +153,20 @@
 				}
 			}
 			
+			
 			// Do the callback for each row
 			o.fn.call(items);
 			
+//console.log(o.vector, spareTops, items);
+			// Check items to see if any of the start positions has changed
+			// If has changed then the item needs to be added back in to be re-evaluated
+			for (i = 0; i < spareTops.length; i++) {
+    			if (spareTops[i][0] !== $(spareTops[i][1]).offset()[leftOrTop]) {
+    			    items = $(items).not(spareTops[i][1]);
+    			}
+			}
+			
+			// Continue with whatever is left
 			collection = $(collection).not(items);
 			collectionLength = collection.length;
 		
@@ -239,6 +261,8 @@
 						,rowBottom = 0
 						,rowTallests
 					;
+					
+//console.log(this);
 					
 					// Find all the items in the row which extend the furthest down the page (the row tallests)
 					rowTallests = [];
