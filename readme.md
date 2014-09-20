@@ -85,24 +85,3 @@ _Includes items that end within the length of the tallest Type 0 item_
 
 Type -1   
 _All items in the collection are considered in a row_
-
-Web Font Funs
----------
-```
-Example 
-// Web Font Loader by Typekit and Google
-// https://github.com/typekit/webfontloader
-var WebFontConfig = {
-	google: {
-		families: [
-			'Merriweather:300,400italic,400:latin'
-			,'Open+Sans:400,600,600italic,700,700italic,400italic,300,300italic'
-		]
-	}
-	,active: function() {
-		$(function() {
-			$(window).triggerHandler('resize.equalizerows');
-		});
-	}
-};
-```
