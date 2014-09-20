@@ -52,7 +52,7 @@ The rest can be done in HTML
 
 Basic Options
 
-- data-equalizerows=".link"  
+- data-equalizerows=".link"   
   Turns on equalizerows and indicates which items to work with
 - data-equalizerows-active
   Turns on window.resize event handling, defaults to off
