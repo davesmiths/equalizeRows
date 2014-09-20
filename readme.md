@@ -61,20 +61,20 @@ Options
 -------------
 
 data-equalizerows=".link"   
-_Turns on equalizerows and indicates which items to work with_
+_selector: Turns on equalizerows and indicates which items to work with_
 
 data-equalizerows-active   
-_Turns on window.resize event handling, default is off; false_
+_boolean: Turns on window.resize event handling, default is false_
 
 data-equalizerows-here=".link-title"   
-_Selects a descendent element where the equalizing will be applied, defaults to the item we're working with_
+_selector: Selects a descendent element where the equalizing will be applied, defaults to the item we're working with_
 
 data-equalizerows-property="padding-bottom"   
-_CSS property to change, defaults to height, but is also a comma separated list so "padding-bottom,padding-top" will work_
+_comma-separated list of CSS properties: CSS property used to equalize items, defaults to height, but is also a comma separated list so "padding-bottom,padding-top" will work_
 
 data-equalizerows-type   
 data-equalizerows-colType   
-_The row and column type being used, defaults to 0_
+_-1,0,1,2,3: The row and column type being used, defaults to 0_
 
 Type 0   
 _Items that start at the same y offset are in a row_
