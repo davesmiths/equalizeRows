@@ -68,7 +68,7 @@ _CSS property to change, defaults to height, but is also a comma separated list 
 Advanced Options
 ----------------
 
-data-equalizerows-type and data-equalizerows-colType
+data-equalizerows-type and data-equalizerows-colType   
 _The row and column type being used, defaults to 0_
 0 Normal: Items that start at the same y point are in the row
 1 Compact: Normal plus items that end within the tallest item are in the row
