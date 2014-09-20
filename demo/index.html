@@ -41,7 +41,7 @@
                 $('.tabs').each(function() {
                     var panels = [];
                     var tallest = 0;
-                    var $as = $(this).find('a');
+                    var $as = $(this).find('> li > a');
                     $as.each(function() {
                         panels.push($($(this).attr('href')));
                     });
@@ -52,7 +52,7 @@
                         }
                     });
                     $(panels).each(function() {
-                        $(this).css('min-height', (tallest + 50) + 'px');
+                        //$(this).css('min-height', (tallest + 50) + 'px');
                     });
                     $as.each(hideLinks);
                     $as.on('click', function(e) {
@@ -72,22 +72,25 @@ ul:after,
 ul:before {content:"";display:table;}
 ul:after {clear:both;}
 ul {display:inline-block;}
-ul {display:block;}
+ul {display:block;margin:0;}
             li {float:left;margin:0;padding:0;width:33.3333%;border:5px solid #ddd;box-sizing:border-box;}
-            a {display:block;padding:20px;text-decoration:none;color:#1B5084;text-transform:uppercase;
-background: #f2f2f2; /* Old browsers */
-background: -moz-linear-gradient(top,  #f2f2f2 0%, #eeeeee 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f2f2), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #f2f2f2 0%,#eeeeee 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #f2f2f2 0%,#eeeeee 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #f2f2f2 0%,#eeeeee 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #f2f2f2 0%,#eeeeee 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
-
+            a {display:block;padding:20px;text-decoration:none;color:#555;text-transform:uppercase;
+background: #fbfbfb;
+background: -moz-linear-gradient(top,  #fbfbfb 0%, #ededed 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fbfbfb), color-stop(100%,#ededed));
+background: -webkit-linear-gradient(top,  #fbfbfb 0%,#ededed 100%);
+background: -o-linear-gradient(top,  #fbfbfb 0%,#ededed 100%);
+background: -ms-linear-gradient(top,  #fbfbfb 0%,#ededed 100%);
+background: linear-gradient(to bottom,  #fbfbfb 0%,#ededed 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#ededed',GradientType=0 );
+/*
+http://www.colorzilla.com/gradient-editor/#fbfbfb+0,ededed+100;Custom
+*/
                 
             }
-            ul[data-equalizerows] a {
- background: #9bcdff; /* Old browsers */
+            section ul[data-equalizerows] a {
+color:#1B5084;
+background: #9bcdff; /* Old browsers */
 background: -moz-linear-gradient(top,  #9bcdff 0%, #84c0fc 44%, #67b0f9 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9bcdff), color-stop(44%,#84c0fc), color-stop(100%,#67b0f9)); /* Chrome,Safari4+ */
 background: -webkit-linear-gradient(top,  #9bcdff 0%,#84c0fc 44%,#67b0f9 100%); /* Chrome10+,Safari5.1+ */
@@ -98,6 +101,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9bcdff', end
 
 }
             a:hover {}
+            .tabs {margin-bottom:20px;}
             .tabs li {width:20%;}
             .tabs a {background:#eee;}
             .tabs a.active {background:#fff;}
@@ -106,7 +110,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9bcdff', end
     </head>
     <body>
     
+        <ul class="tabs" data-equalizerows="a">
+            <li><a href="#t0">Regular floats</a></li>
+            <li><a href="#t1">Regular floats with first pulled up</a></li>
+            <li><a href="#t2">Structured into columns</a></li>
+            <li><a href="#t3">Structured into columns with first pulled up</a></li>
+        </ul>
     
+    <section id="t0">
         <h2>Regular floats</h2>
         
         <ul class="tabs">
@@ -169,7 +180,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9bcdff', end
         </ul>
 </div>
 
+</section>
 
+<section id="t1">
         <h2>Regular floats with first pulled up</h2>
         <ul class="tabs">
             <li><a href="#c0">type 0: Tops only</a></li>
@@ -232,10 +245,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9bcdff', end
         </ul>
 </div>
 
+</section>
 
 
-
-
+<section id="t2">
 
         <h2>Structured into columns</h2>
         <ul class="tabs">
@@ -287,9 +300,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9bcdff', end
 </div>
 
 
+</section>
 
-
-
+<section id="t3">
         <h2>Structured into columns with first pulled up</h2>
         <ul class="tabs">
             <li><a href="#d0">type 0: Tops only</a></li>
@@ -339,7 +352,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9bcdff', end
         </ul>
 </div>
 
-
+</section>
 <!-- -->
     </body>
 </html>
