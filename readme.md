@@ -50,7 +50,14 @@ The rest can be done in HTML
 </div>
 ```
 
-Basic Options
+Or via JavaScript
+```
+<script>
+    $('.link').equalizeRows(options);
+</script>
+```
+
+Options
 -------------
 
 data-equalizerows=".link"   
@@ -65,10 +72,8 @@ _Selects a descendent element where the equalizing will be applied, defaults to 
 data-equalizerows-property="padding-bottom"   
 _CSS property to change, defaults to height, but is also a comma separated list so "padding-bottom,padding-top" will work_
 
-Advanced Options
-----------------
-
-data-equalizerows-type and data-equalizerows-colType   
+data-equalizerows-type   
+data-equalizerows-colType   
 _The row and column type being used, defaults to 0_
 
 Type 0   
