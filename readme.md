@@ -70,10 +70,12 @@ Advanced Options
 
 data-equalizerows-type and data-equalizerows-colType   
 _The row and column type being used, defaults to 0_
-0 Normal: Items that start at the same y point are in the row
-1 Compact: Normal plus items that end within the tallest item are in the row
-2 Super Compact: Normal plus items that start within the tallest item are in the row
-999 Ultra Compact: The whole collection is considered in the row
+
+Type 0 Items that start at the same y offset are in the row
+Type 1 Includes items that start within the length of the tallest Type 0 item
+Type 2 Includes items that start and end within the length of the tallest Type 0 item
+Type 3 Includes items that end within the length of the tallest Type 0 item
+Type -1 All items in the collection are considered in the row
 
 Web Font Funs
 ---------
