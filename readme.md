@@ -50,16 +50,19 @@ The rest can be done in HTML
 </div>
 ```
 
-Basic Options
+##Basic Options
 
-- data-equalizerows=".link"   
-  Turns on equalizerows and indicates which items to work with
-- data-equalizerows-active
-  Turns on window.resize event handling, defaults to off
-- data-equalizerows-here=".link-title"
-  Selects a descendent element where the equalizing will be applied, defaults to the item we're working with
-- data-equalizerows-property="padding-bottom"
-  CSS property to change, defaults to height, but is a comma separated list e.g. "padding-bottom,padding-top" will work too
+data-equalizerows=".link"   
+Turns on equalizerows and indicates which items to work with
+
+data-equalizerows-active   
+Turns on window.resize event handling, defaults to off
+
+data-equalizerows-here=".link-title"   
+Selects a descendent element where the equalizing will be applied, defaults to the item we're working with
+
+data-equalizerows-property="padding-bottom"   
+CSS property to change, defaults to height, but is a comma separated list e.g. "padding-bottom,padding-top" will work too
 
 Advanced Options
 - data-equalizerows-type and data-equalizerows-colType
