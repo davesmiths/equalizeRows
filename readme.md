@@ -57,7 +57,7 @@ data-equalizerows=".link"
 _Turns on equalizerows and indicates which items to work with_
 
 data-equalizerows-active   
-_Turns on window.resize event handling, defaults to off_
+_Turns on window.resize event handling, default is off; false
 
 data-equalizerows-here=".link-title"   
 _Selects a descendent element where the equalizing will be applied, defaults to the item we're working with_
