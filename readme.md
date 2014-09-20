@@ -57,19 +57,19 @@ data-equalizerows=".link"
 _Turns on equalizerows and indicates which items to work with_
 
 data-equalizerows-active   
-Turns on window.resize event handling, defaults to off
+_Turns on window.resize event handling, defaults to off_
 
 data-equalizerows-here=".link-title"   
-Selects a descendent element where the equalizing will be applied, defaults to the item we're working with
+_Selects a descendent element where the equalizing will be applied, defaults to the item we're working with_
 
 data-equalizerows-property="padding-bottom"   
-CSS property to change, defaults to height, but is a comma separated list e.g. "padding-bottom,padding-top" will work too
+_CSS property to change, defaults to height, but is a comma separated list e.g. "padding-bottom,padding-top" will work too_
 
 Advanced Options
 ----------------
 
 data-equalizerows-type and data-equalizerows-colType
-The row and column type being used, defaults to 0
+_The row and column type being used, defaults to 0_
 0 Normal: Items that start at the same y point are in the row
 1 Compact: Normal plus items that end within the tallest item are in the row
 2 Super Compact: Normal plus items that start within the tallest item are in the row
