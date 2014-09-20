@@ -74,7 +74,7 @@ _comma-separated list of CSS properties: CSS property used to equalize items, de
 
 data-equalizerows-type   
 data-equalizerows-colType   
-_-1,0,1,2,3: Defines what a row or column is, defaults to 0_
+_-1,0,1,2,3: Defines which items are in a row or column, defaults to 0_
 
 Type 0   
 _Items that start at the same y offset are in a row_
