@@ -3,8 +3,6 @@ equalizeRows
 
 jQuery plugin to equalise the height of items in rows and columns
 
-Going to put a demo up at some point, but in the meantime here's how to use
-
 
 Getting Started
 ----------
@@ -54,7 +52,7 @@ The rest can be done in HTML
 
 Basic Options
 
-- data-equalizerows=".link"
+- data-equalizerows=".link"  
   Turns on equalizerows and indicates which items to work with
 - data-equalizerows-active
   Turns on window.resize event handling, defaults to off
