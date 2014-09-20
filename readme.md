@@ -71,11 +71,20 @@ Advanced Options
 data-equalizerows-type and data-equalizerows-colType   
 _The row and column type being used, defaults to 0_
 
-Type 0 Items that start at the same y offset are in the row
-Type 1 Includes items that start within the length of the tallest Type 0 item
-Type 2 Includes items that start and end within the length of the tallest Type 0 item
-Type 3 Includes items that end within the length of the tallest Type 0 item
-Type -1 All items in the collection are considered in the row
+Type 0   
+_Items that start at the same y offset are in the row_
+
+Type 1   
+_Includes items that start within the length of the tallest Type 0 item_
+
+Type 2   
+_Includes items that start and end within the length of the tallest Type 0 item_
+
+Type 3   
+_Includes items that end within the length of the tallest Type 0 item_
+
+Type -1   
+_All items in the collection are considered in the row_
 
 Web Font Funs
 ---------
