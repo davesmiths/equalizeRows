@@ -54,7 +54,7 @@ Basic Options
 -------------
 
 data-equalizerows=".link"   
-Turns on equalizerows and indicates which items to work with
+_Turns on equalizerows and indicates which items to work with_
 
 data-equalizerows-active   
 Turns on window.resize event handling, defaults to off
