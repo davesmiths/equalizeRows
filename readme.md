@@ -9,6 +9,7 @@ Going to put a demo up at some point, but in the meantime here's how to use
 Getting Started
 ----------
 ```
+<script src="jquery.js"></script>
 <script src="jquery-equalizerows.js"></script>
 <script>
 $(function() {
