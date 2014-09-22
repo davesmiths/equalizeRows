@@ -81,6 +81,8 @@ data-equalizerows-type
 data-equalizerows-colType   
 _-1,0,1,2,3: Defines which items are in a row or column, defaults to 0_
 
+data-applyTo
+_first,last,all: Defaults to last. Sets which items in a column are equalized_
 
 Row and Col Types
 -----------------
