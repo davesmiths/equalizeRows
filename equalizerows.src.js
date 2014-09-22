@@ -230,6 +230,7 @@
 		var propertyIsNotArray
 			,propertyLength
 			,i
+			,self = this
 		;
 		
 		o = o || {};
@@ -241,6 +242,7 @@
 		o.property = o.property === undefined ? 'height' : o.property; // 'padding-top,padding-bottom', 'padding-top', 'padding-bottom', 'height' // or maybe at some point a function but needs more consideration
 		o.active = o.active === undefined ? false : o.active;
 		o.here = o.here === undefined ? undefined : o.here;
+		o.callback = o.callback || function() {};
 		
 //console.log(o.here, o.property, o.active, o.type, o.applyTo, o.colType);
 		
@@ -354,6 +356,9 @@
 						
 						}
 					});
+					
+					// Run the callback
+					o.callback.call(self);
 					
 				}
 				,resize: function() {

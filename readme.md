@@ -102,3 +102,31 @@ _Includes items that end within the length of the longest Type 0 item_
 
 Type -1   
 _All items in the collection are considered in a row_
+
+
+Advanced
+--------
+Add a callback that is called once equalizeRows is done
+```
+<script>
+
+    $('.stuff').equalizeRows({
+	
+		callback: function() {
+		
+			this; // this is the whole collection, i.e., .stuff
+			
+			// The following detects a RoyalSlider instance and calls its resize function
+			$(this).each(function() {
+				var royalSlider = $(this).data('royalSlider');
+				if (royalSlider && royalSlider.updateSliderSize) {
+					royalSlider.updateSliderSize();
+				}
+			});
+			
+		}
+		
+	});
+
+</script>
+```
