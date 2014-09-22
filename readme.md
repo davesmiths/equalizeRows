@@ -16,21 +16,15 @@ $(function() {
 		
 		var $this = $(this)
 			,selector = $this.data('equalizerows')
-			,here = $this.data('equalizerows-here')
-			,property = $this.data('equalizerows-property')
-			,active = $this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false
-			,type = $this.data('equalizerows-type')
-			,colType = $this.data('equalizerows-colType')
-			,applyTo = $this.data('equalizerows-applyTo')
 		;
 		if (selector) {
 			$this.find(selector).equalizeRows({
-				type:type
-				,active:active
-				,property:property
-				,here:here
-				,colType:colType
-				,applyTo:applyTo
+				type:$this.data('equalizerows-type')
+				,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false
+				,property:$this.data('equalizerows-property')
+				,here:$this.data('equalizerows-here')
+				,colType:$this.data('equalizerows-colType')
+				,applyTo:$this.data('equalizerows-applyTo')
 			});
 		}
 	});
@@ -53,6 +47,14 @@ The rest can be done in HTML
 ... or with JavaScript
 ```
 <script>
+	var options = {
+		//type: 0
+		//,active: 1
+		//,property: 'height'
+		//,here: 'a'
+		//,colType: 0
+		//,applyTo: 'first'
+	};
     $('.link').equalizeRows(options);
 </script>
 ```
