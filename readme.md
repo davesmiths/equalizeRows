@@ -74,15 +74,16 @@ _boolean: Turns on window.resize event handling, default is false_
 data-equalizerows-here=".link-title"   
 _selector: Selects a descendent element where the equalizing will be applied, defaults to the item we're working with_
 
-data-equalizerows-property="padding-bottom"   
+data-equalizerows-property="height"   
 _comma-separated list of CSS properties: CSS property used to equalize items, defaults to height, but also a comma separated list so "padding-bottom,padding-top" works_
 
-data-equalizerows-type   
+data-equalizerows-type="0"   
 data-equalizerows-colType   
 _-1,0,1,2,3: Defines which items are in a row or column, defaults to 0_
 
-data-applyTo
+data-applyTo="last"   
 _first,last,all: Defaults to last. Sets which items in a column are equalized_
+
 
 Row and Col Types
 -----------------
