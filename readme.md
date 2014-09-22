@@ -11,24 +11,27 @@ Getting Started
 <script src="jquery-equalizerows.js"></script>
 <script>
 $(function() {
-	
-	$('[data-equalizerows]').each(function() {
-		
-		var $this = $(this)
-			,selector = $this.data('equalizerows')
-		;
-		if (selector) {
-			$this.find(selector).equalizeRows({
-				type:$this.data('equalizerows-type')
-				,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false
-				,property:$this.data('equalizerows-property')
-				,here:$this.data('equalizerows-here')
-				,colType:$this.data('equalizerows-colType')
-				,applyTo:$this.data('equalizerows-applyTo')
-			});
-		}
-	});
-	
+
+    $('[data-equalizerows]').each(function() {
+
+        var $this = $(this)
+            ,selector = $this.data('equalizerows')
+        ;
+        if (selector) {
+            $this.find(selector).equalizeRows({
+                type:$this.data('equalizerows-type')
+				// Active defaults to off
+                ,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false
+				// Active defaults to on
+                //,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') === false ? false : true
+                ,property:$this.data('equalizerows-property')
+                ,here:$this.data('equalizerows-here')
+                ,colType:$this.data('equalizerows-colType')
+                ,applyTo:$this.data('equalizerows-applyTo')
+            });
+        }
+    });
+
 });
 </script>
 ```
