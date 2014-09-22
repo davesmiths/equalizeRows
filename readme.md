@@ -75,7 +75,7 @@ data-equalizerows-here=".link-title"
 _selector: Selects a descendent element where the equalizing will be applied, defaults to the item we're working with_
 
 data-equalizerows-property="height"   
-_comma-separated list of CSS properties: CSS property used to equalize items, defaults to height, but also a comma separated list so "padding-bottom,padding-top" works_
+_comma-separated list of CSS properties: CSS properties used to equalize items, defaults to height. "padding-bottom,padding-top" will work_
 
 data-equalizerows-type="0"   
 data-equalizerows-colType   
