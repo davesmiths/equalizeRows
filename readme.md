@@ -92,13 +92,13 @@ Type 0
 _Items that start at the same y offset are in a row_
 
 Type 1   
-_Includes items that start within the length of the tallest Type 0 item_
+_Includes items that start within the length of the longest Type 0 item_
 
 Type 2   
-_Includes items that start and end within the length of the tallest Type 0 item_
+_Includes items that start and end within the length of the longest Type 0 item_
 
 Type 3   
-_Includes items that end within the length of the tallest Type 0 item_
+_Includes items that end within the length of the longest Type 0 item_
 
 Type -1   
 _All items in the collection are considered in a row_
