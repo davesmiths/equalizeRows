@@ -7,30 +7,27 @@
         <script>
             
             $(function() {
-            	
-            	$('[data-equalizerows]').each(function() {
-            		
-            		var $this = $(this)
-            			,selector = $this.data('equalizerows')
-            			,here = $this.data('equalizerows-here')
-            			,property = $this.data('equalizerows-property')
-            			,active = $this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false
-            			,type = $this.data('equalizerows-type')
-            			,colType = $this.data('equalizerows-colType')
-            			,applyTo = $this.data('equalizerows-applyTo')
-            		;
-            		if (selector) {
-            			$this.find(selector).equalizeRows({
-            				type:type
-            				,active:active
-            				,property:property
-            				,here:here
-            				,colType:colType
-            				,applyTo:applyTo
-            			});
-            		}
-            	});
-            	
+            
+                $('[data-equalizerows]').each(function() {
+            
+                    var $this = $(this)
+                        ,selector = $this.data('equalizerows')
+                    ;
+                    if (selector) {
+                        $this.find(selector).equalizeRows({
+                            type:$this.data('equalizerows-type')
+                            // Active defaults to off
+                            //,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false
+                            // Active defaults to on
+                            ,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') === false ? false : true
+                            ,property:$this.data('equalizerows-property')
+                            ,here:$this.data('equalizerows-here')
+                            ,colType:$this.data('equalizerows-colType')
+                            ,applyTo:$this.data('equalizerows-applyTo')
+                        });
+                    }
+                });
+            
             });
             
             $(function() {

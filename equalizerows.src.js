@@ -252,6 +252,12 @@
 		}
 		propertyLength = o.property.length;
 		
+		$(this).each(function() {
+		    if ($(this).data('id.equalizerows') === undefined) {
+        		$(this).data('id.equalizerows', self);
+		    }
+		});
+		
 		if ($(this).length) {
 
 			eachRowOf.call(this, {
@@ -364,9 +370,13 @@
 				,resize: function() {
 					// Reset CSS
 					$(this).each(function() {
-						var $this = o.here ? $(this).find(o.here) : $(this);
-						for (i = 0; i < propertyLength; i += 1) {
-							$this.css(o.property[i], '');
+						var $this = o.here ? $(this).find(o.here) : $(this)
+						    ,id = $this.data('id.equalizerows')
+						;
+						if (id === self) {
+        					for (i = 0; i < propertyLength; i += 1) {
+        						$this.css(o.property[i], '');
+        					}
 						}
 					});
 				}
