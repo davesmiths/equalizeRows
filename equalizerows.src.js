@@ -209,19 +209,17 @@
 	
 	
 	// Add window resize event and buffer the calls to prevent a potential overflow of calls to runEachVectorOf
-	setTimeout(function() {
-		$(window).on('resize.equalizerows', function() {
-			clearTimeout(timeoutID);
-			timeoutID = setTimeout(function() {
-				var activeCollectionsLength = activeCollections.length
-					,i
-				;
-				for (i = 0; i < activeCollectionsLength; i += 1) {
-					runEachVectorOf(activeCollections[i]);
-				}
-			}, delay);
-		});
-	}, 50);
+	$(window).on('resize.equalizerows', function() {
+		clearTimeout(timeoutID);
+		timeoutID = setTimeout(function() {
+			var activeCollectionsLength = activeCollections.length
+				,i
+			;
+			for (i = 0; i < activeCollectionsLength; i += 1) {
+				runEachVectorOf(activeCollections[i]);
+			}
+		}, delay);
+	});
 	
 	
 	// Equalize Rows
@@ -244,17 +242,15 @@
 		o.here = o.here === undefined ? undefined : o.here;
 		o.callback = o.callback || function() {};
 		
-//console.log(o.here, o.property, o.active, o.type, o.applyTo, o.colType);
-		
 		propertyIsNotArray = $.type(o.property) !== 'array';
 		if (propertyIsNotArray) {
 			o.property = o.property.split(',');
 		}
 		propertyLength = o.property.length;
 		
-		$(this).each(function() {
-		    if ($(this).data('id.equalizerows') === undefined) {
-        		$(this).data('id.equalizerows', self);
+		$(self).each(function() {
+		    if ($(this).data('uid.equalizerows') === undefined) {
+        		$(this).data('uid.equalizerows', self);
 		    }
 		});
 		
@@ -265,12 +261,11 @@
 				,active:o.active
 				,fn:function() {
 	
+
 					var $row = $(this)
 						,rowBottom = 0
 						,rowTallests
 					;
-					
-//console.log(this);
 					
 					// Find all the items in the row which extend the furthest down the page (the row tallests)
 					rowTallests = [];
@@ -280,7 +275,7 @@
 							,offsetBottom
 						;
 						
-						offsetBottom = $this.offset().top + $this.outerHeight();
+						offsetBottom = Math.round($this.offset().top + $this.outerHeight());
 						
 						if (offsetBottom > rowBottom) {
 							rowTallests = [this];
@@ -291,7 +286,7 @@
 						}
 						
 					});
-					
+
 					// Now work with each column in the row
 					eachColOf.call(this, {
 						type:o.colType
@@ -307,10 +302,9 @@
 							;
 							
 							$col = $(this);
-							
+
 							// Check if this column needs equalizing
 							if ($col.is(rowTallests) === false) {
-								
 								
 								// It does, now do the do
 								
@@ -322,12 +316,12 @@
 										,offsetBottom
 									;
 									
-									offsetBottom = $this.offset().top + $this.outerHeight();
+									offsetBottom = Math.round($this.offset().top + $this.outerHeight());
 									if (offsetBottom > colBottom) {
 										$colTallest = $(this);
 										colBottom = offsetBottom;
 									}
-									
+								
 								});
 									
 								diff = rowBottom - colBottom;
@@ -345,14 +339,13 @@
 								}
 								
 								$colTallestHere = o.here ? $colTallest.find(o.here) : $colTallest;
-								
+
 								if ($items) {
 									$itemsLength = $items.length;
 									$items.each(function() {
 										var $thisHereNow = o.here ? $(this).find(o.here) : $(this);
 										for (i = 0; i < propertyLength; i += 1) {
-											$thisHereNow.css(o.property[i], parseFloat($colTallestHere.css(o.property[i]), 10) + (diff / (propertyLength * $itemsLength)) + 'px');
-											 // 0.4 was needed in Firefox in the demo, so need to investigate what is happening here
+											$thisHereNow.css(o.property[i], parseInt($thisHereNow.css(o.property[i]), 10) + (diff / (propertyLength * $itemsLength)) + 'px');
 										}
 									});
 								}
@@ -363,6 +356,7 @@
 						}
 					});
 					
+
 					// Run the callback
 					o.callback.call(self);
 					
@@ -371,9 +365,9 @@
 					// Reset CSS
 					$(this).each(function() {
 						var $this = o.here ? $(this).find(o.here) : $(this)
-						    ,id = $this.data('id.equalizerows')
+						    ,uid = $(this).data('uid.equalizerows')
 						;
-						if (id === self) {
+						if (uid === self) {
         					for (i = 0; i < propertyLength; i += 1) {
         						$this.css(o.property[i], '');
         					}
