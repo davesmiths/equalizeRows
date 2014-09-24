@@ -78,10 +78,10 @@ data-equalizerows-property="height"
 _comma-separated list of CSS properties: CSS properties used to equalize items, defaults to height. "padding-bottom,padding-top" will work_
 
 data-equalizerows-type="0"   
-data-equalizerows-colType   
+data-equalizerows-coltype   
 _-1,0,1,2,3: Defines which items are in a row or column, defaults to 0_
 
-data-applyTo="last"   
+data-applyto="last"   
 _first,last,all: Defaults to last. Sets which items in a column are equalized_
 
 
