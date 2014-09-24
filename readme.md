@@ -12,7 +12,7 @@ Getting Started
 <script>
 $(function() {
 
-    $('[data-equalizerows]').each(function() {
+    $($('[data-equalizerows]').get().reverse()).each(function() {
 
         var $this = $(this)
             ,selector = $this.data('equalizerows')
