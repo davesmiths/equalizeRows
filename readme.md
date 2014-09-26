@@ -12,24 +12,33 @@ Getting Started
 <script>
 $(function() {
 
+	'use strict';
+	
     $($('[data-equalizerows]').get().reverse()).each(function() {
 
         var $this = $(this)
             ,selector = $this.data('equalizerows')
         ;
-        if (selector) {
-            $this.find(selector).equalizeRows({
-                type:$this.data('equalizerows-type')
-				// Active defaults to off
-                ,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false
-				// Active defaults to on
-                //,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') === false ? false : true
-                ,property:$this.data('equalizerows-property')
-                ,here:$this.data('equalizerows-here')
-                ,colType:$this.data('equalizerows-colType')
-                ,applyTo:$this.data('equalizerows-applyTo')
-            });
-        }
+		
+		// Prevent multiple initiations so this code snippet can be reused as and when
+		if ($this.data('equalizerows-initiated') === undefined) {
+			
+			$this.data('equalizerows-initiated', true);
+	
+			if (selector) {
+				$this.find(selector).equalizeRows({
+					type:$this.data('equalizerows-type')
+					// Active defaults to off
+					,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false
+					// Active defaults to on
+					//,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') === false ? false : true
+					,property:$this.data('equalizerows-property')
+					,here:$this.data('equalizerows-here')
+					,colType:$this.data('equalizerows-colType')
+					,applyTo:$this.data('equalizerows-applyTo')
+				});
+			}
+		}
     });
 
 });
