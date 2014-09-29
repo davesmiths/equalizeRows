@@ -17,7 +17,7 @@
 	
 	
     runEachVectorOf = function(o) {
-
+		
 		// There are two types of vector (row or column):
 /*
 		
@@ -356,9 +356,6 @@
 						}
 					});
 					
-
-					// Run the callback
-					o.callback.call(self);
 					
 				}
 				,resize: function() {
@@ -377,6 +374,9 @@
 			});
 			
 		}
+
+		// Run the callback
+		o.callback.call(self);
 	};
 	
     /*
