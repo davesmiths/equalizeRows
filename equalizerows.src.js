@@ -1,4 +1,4 @@
-
+/* equalizeRows v1.0.0 https://github.com/davesmiths/equalizerows */
 (function($) {
     
     'use strict';
