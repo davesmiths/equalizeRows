@@ -1,4 +1,4 @@
-/* equalizeRows v1.0.0 https://github.com/davesmiths/equalizerows */
+/* equalizeRows v1.0.1 https://github.com/davesmiths/equalizerows */
 (function($) {
     
     'use strict';
@@ -172,6 +172,9 @@
 		
 		}
 		
+		// Run the callback
+		o.callback.call(o.collection);
+		
     	return this;
 		
     };
@@ -185,6 +188,7 @@
 		o.active = o.active === undefined ? false : o.active;
 		o.fn = o.fn || function() {};
 		o.resize = o.resize || function() {};
+		o.callback = o.callback || function() {};
 		
 		o.collection = this;
 		
@@ -355,8 +359,6 @@
 						
 						}
 					});
-					
-					
 				}
 				,resize: function() {
 					// Reset CSS
@@ -371,12 +373,11 @@
 						}
 					});
 				}
+				,callback: o.callback
 			});
 			
 		}
 
-		// Run the callback
-		o.callback.call(self);
 	};
 	
     /*
