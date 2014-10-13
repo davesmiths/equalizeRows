@@ -56,7 +56,6 @@ $(function() {
 </script>
 ```
 
-
 Options
 -------
 
