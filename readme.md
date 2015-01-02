@@ -63,6 +63,8 @@ Options
 Turns on equalizerows and which items to work with  
 Value is a selector  
 
+The following are optional:
+
 **data-equalizerows-active**  
 Turns on window.resize event handling  
 Value is a boolean  
