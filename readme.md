@@ -27,9 +27,8 @@ $(function() {
 
     $($('[data-equalizerows]').get().reverse()).each(function() {
 
-        var $this = $(this)
-            ,selector = $this.data('equalizerows')
-        ;
+        var $this = $(this),
+            selector = $this.data('equalizerows');
 
 		// Prevent multiple initiations so this code snippet can be reused as and when
 		if ($this.data('equalizerows-initiated') === undefined) {
@@ -38,15 +37,15 @@ $(function() {
 
 			if (selector) {
 				$this.find(selector).equalizeRows({
-					type:$this.data('equalizerows-type')
+					type:$this.data('equalizerows-type'),
 					// Active defaults to off
-					,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false
+					active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false,
 					// Active defaults to on
-					//,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') === false ? false : true
-					,property:$this.data('equalizerows-property')
-					,here:$this.data('equalizerows-here')
-					,colType:$this.data('equalizerows-colType')
-					,applyTo:$this.data('equalizerows-applyTo')
+					//,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') === false ? false : true,
+					property:$this.data('equalizerows-property'),
+					here:$this.data('equalizerows-here'),
+					colType:$this.data('equalizerows-colType'),
+					applyTo:$this.data('equalizerows-applyTo')
 				});
 			}
 		}
@@ -121,13 +120,13 @@ Advanced
 ```
 <script>
 	var options = {
-		//type: 0
-		//,active: 1
-		//,property: 'height'
-		//,here: 'a'
-		//,colType: 0
-		//,applyTo: 'first'
-		//,callback: function() {}
+		//type: 0,
+		//active: 1,
+		//property: 'height',
+		//here: 'a',
+		//colType: 0,
+		//applyTo: 'first',
+		//callback: function() {}
 	};
 	$('.link').equalizeRows(options);
 </script>
