@@ -41,7 +41,7 @@ $(function() {
 					// Active defaults to off
 					active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false,
 					// Active defaults to on
-					//,active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') === false ? false : true,
+					//active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') === false ? false : true,
 					property:$this.data('equalizerows-property'),
 					here:$this.data('equalizerows-here'),
 					colType:$this.data('equalizerows-colType'),
@@ -97,19 +97,19 @@ The following explains what the different row and col types are when used in:
 data-equalizerows-type="0"  
 data-equalizerows-coltype="0"
 
-**Type 0**  
+**Type 0 (Same starting point)**  
 Items that start at the same y offset are in a row
 
-**Type 1**  
-Adds items to the row or col that start within the length of the longest Type 0 item
+**Type 1 (Starts within longest)**  
+Items are considered in a row or col if they start within the length of the longest Type 0 item
 
-**Type 2**  
-Adds items to the row or col that start and end within the length of the longest Type 0 item
+**Type 2 (Starts and ends within longest)**  
+Items are considered in a row or col if they start and end within the length of the longest Type 0 item
 
-**Type 3**  
-Adds items to the row or col that end within the length of the longest Type 0 item
+**Type 3 (Ends within longest)**  
+Items are considered in a row or col if they end within the length of the longest Type 0 item
 
-**Type -1**  
+**Type -1 (All)**  
 All items in the collection are considered in a row or col
 
 
