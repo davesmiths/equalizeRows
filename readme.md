@@ -98,19 +98,19 @@ data-equalizerows-type="0"
 data-equalizerows-coltype="0"
 
 **Type 0 (Same starting point)**  
-Items that start at the same y offset are in a row
+Items that start at the same y offset are in the same row or col
 
 **Type 1 (Starts within longest)**  
-Items are considered in a row or col if they start within the length of the longest Type 0 item
+Items that start within the length of the longest Type 0 item are considered in the same row or col
 
 **Type 2 (Starts and ends within longest)**  
-Items are considered in a row or col if they start and end within the length of the longest Type 0 item
+Items that start and end within the length of the longest Type 0 item are considered in the same row or col
 
 **Type 3 (Ends within longest)**  
-Items are considered in a row or col if they end within the length of the longest Type 0 item
+Items that end within the length of the longest Type 0 item are considered in the same row or col
 
 **Type -1 (All)**  
-All items in the collection are considered in a row or col
+All items in the collection are considered in the same row or col
 
 
 Advanced
