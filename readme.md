@@ -157,3 +157,61 @@ Add a callback that is called after each instance
 
 </script>
 ```
+
+###Handling images loading
+```
+
+$(function() {
+
+    'use strict';
+
+    $($('[data-equalizerows]').get().reverse()).each(function() {
+
+        var $this = $(this),
+            selector = $this.data('equalizerows'),
+			run,
+			numberOfImages;
+
+		run = function() {
+			$this.find(selector).equalizeRows({
+				type:$this.data('equalizerows-type'),
+				// Active defaults to off
+				active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') !== false ? true : false,
+				// Active defaults to on
+				//active:$this.is('[data-equalizerows-active]') && $this.data('equalizerows-active') === false ? false : true,
+				property:$this.data('equalizerows-property'),
+				here:$this.data('equalizerows-here'),
+				colType:$this.data('equalizerows-colType'),
+				applyTo:$this.data('equalizerows-applyTo')
+			});
+		};
+        // Prevent multiple initiations so this code snippet can be reused as and when
+        if ($this.data('equalizerows-initiated') === undefined) {
+
+            $this.data('equalizerows-initiated', true);
+
+            if (selector) {
+				numberOfImages = 0;
+				$this.find(selector).each(function() {
+					var $imgs;
+					$imgs = $(this).find('img');
+					numberOfImages += $imgs.length;
+					$imgs.on('load', function() {
+						numberOfImages -= 1;
+						if (numberOfImages === 0) {
+							run();
+						}
+					});
+				});
+				setTimeout(function() {
+					if (numberOfImages > 0) {
+						numberOfImages = -1;
+						run();
+					}
+				},3000);
+            }
+        }
+    });
+
+});
+```
