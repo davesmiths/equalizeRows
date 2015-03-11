@@ -191,6 +191,7 @@ $(function() {
             $this.data('equalizerows-initiated', true);
 
             if (selector) {
+				// Find all the images and check they've all loaded
 				numberOfImages = 0;
 				$this.find(selector).each(function() {
 					var $imgs;
@@ -203,6 +204,7 @@ $(function() {
 						}
 					});
 				});
+				// Make sure equalizeRows is run if there is a problem loading an image
 				setTimeout(function() {
 					if (numberOfImages > 0) {
 						numberOfImages = -1;
